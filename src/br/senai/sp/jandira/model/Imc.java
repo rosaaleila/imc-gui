@@ -2,13 +2,49 @@ package br.senai.sp.jandira.model;
 
 public class Imc {
 	
+	private double altura;
+	private double peso;
 	private double imc;
 	private String estado;
 	
+	public void setAltura(String altura) {
+		// convertendo para double
+		this.altura = Double.parseDouble(altura.replace("," , "."));
+	}
+	
+	public double getAltura() {
+		return altura;
+	}
+	
+	public void setPeso(String peso) {
+		// convertendo pra double
+		this.peso = Double.parseDouble(peso.replace("," , "."));
+	}
+
+	public double getPeso() {
+		return peso;
+	}
+	
+	public void setImc(double imc) {
+		this.imc = imc;
+	}
+	
+	public String getImc() {
+		return String.valueOf(imc);
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
+		public String getEstado() {
+		return estado;
+	}
+		
 	public void calcular(double altura, double peso) {
 		imc = peso / (altura*altura);
-	    imc = Math.round(imc * 100);
-	    imc = imc / 100;
+		imc = Math.round(imc * 100);
+		imc = imc / 100;
 	}
 
 	public void verificar() {
@@ -22,18 +58,8 @@ public class Imc {
 			estado = "Obesidade grau I";
 		} else if (imc >= 35.0 && imc <= 39.9) {
 			estado = "Obesidade grau II (severa)";
-		} else if (imc > 40) {
+		} else {
 			estado = "Obesidade III (mórbida)";
 		}
 	}
-	
-	public double getImc() {
-		return imc;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	
 }

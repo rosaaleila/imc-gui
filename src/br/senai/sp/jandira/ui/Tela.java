@@ -12,7 +12,7 @@ import br.senai.sp.jandira.model.Imc;
 
 public class Tela {
 	
-	public void minhaTela() {
+	public void criarTela() {
 		Imc calculoImc = new Imc();
 		
 		// formatação
@@ -23,12 +23,12 @@ public class Tela {
 		criarTela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		criarTela.setTitle("Calculadora IMC");
 	
-		//elementos
+		// adicionando elementos
 		JLabel lblTitulo = new JLabel();
 		lblTitulo.setText("Cálculo de IMC");
 		lblTitulo.setBounds(40, 20, 200, 30);
 		lblTitulo.setForeground(Color.BLUE);
-		lblTitulo.setFont(new Font("Default", Font.BOLD, 18));
+		lblTitulo.setFont(new Font("", Font.BOLD, 18));
 		
 		JLabel lblPeso = new JLabel();
 		lblPeso.setText("Seu peso:");
@@ -67,7 +67,10 @@ public class Tela {
 		lblEstado.setFont(new Font("", Font.PLAIN, 12));
 		
 		JLabel lblIMC = new JLabel();
+		lblIMC.setBounds(120, 220, 70, 30);
+		
 		JLabel lblClassificacao = new JLabel();
+		lblClassificacao.setBounds(120, 250, 90, 30);
 		
 		//adicionando elementos a tela
 		criarTela.getContentPane().add(lblTitulo);
@@ -87,46 +90,21 @@ public class Tela {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				calculoImc.setAltura(txtAltura.getText()); // atribuindo altura
+				calculoImc.setPeso(txtPeso.getText()); // atribuindo peso
 				
-				// pegando texto
-				String pesoUsuario = txtPeso.getText();
-				String alturaUsuario = txtAltura.getText();
+				double altura = calculoImc.getAltura(); // criando variavel para guardar os valores
+				double peso = calculoImc.getPeso();
 				
-				// convertendo e calculando
-				double IMCpeso = Double.parseDouble(pesoUsuario.replace("," , "."));
-				double IMCaltura = Double.parseDouble(alturaUsuario.replace("," , "."));
-				
-				calculoImc.calcular(IMCaltura, IMCpeso);
+				// chamando os metodos para operacoes
+				calculoImc.calcular(altura, peso);
 				calculoImc.verificar();
 				
-				Double imc = calculoImc.getImc();
-				String valor = String.valueOf(imc);
+				String imc = calculoImc.getImc();
+				String estado = calculoImc.getEstado();
 				
-				// configurando saida do imc
-				lblIMC.setText(valor);
-				lblIMC.setBounds(130, 220, 100, 30);
-				if (imc < 19) {
-					lblIMC.setForeground(Color.orange);
-				} 
-				if (imc < 30 && imc > 19) {
-					lblIMC.setForeground(Color.GREEN);
-				}
-				if (imc > 30) {
-					lblIMC.setForeground(Color.red);
-				}
-				
-				//configurando saida do estado
-				lblClassificacao.setText(calculoImc.getEstado());
-				lblClassificacao.setBounds(130, 250, 200, 30);
-				if (calculoImc.getEstado().equalsIgnoreCase("abaixo do peso")) {
-					lblClassificacao.setForeground(Color.yellow);
-				}
-				if (calculoImc.getEstado().startsWith("Obesidade")) {
-					lblClassificacao.setForeground(Color.red);
-				}
-				if (calculoImc.getEstado().equalsIgnoreCase("peso ideal") || (calculoImc.getEstado().equalsIgnoreCase("levemente acima do peso"))) {
-					lblClassificacao.setForeground(Color.green);
-				}
+				lblIMC.setText(imc);
+				lblClassificacao.setText(estado);
 				
 			}
 		});
