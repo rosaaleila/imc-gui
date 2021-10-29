@@ -67,5 +67,6 @@ public class Imc {
 			estado = "Obesidade III (mórbida)";
 			return "2";
 		}
+		// os valores estao relacionados a configuração de cores na classe Tela
 	}
 }

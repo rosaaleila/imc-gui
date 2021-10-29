@@ -100,7 +100,6 @@ public class Tela {
 				calculoImc.calcular(altura, peso);
 				calculoImc.verificar();
 				
-				
 				// atribuindo valores a variaveis e entao as exibindo
 				String imc = calculoImc.getImc();
 				String estado = calculoImc.getEstado();
