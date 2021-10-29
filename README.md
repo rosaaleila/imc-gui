@@ -3,4 +3,4 @@
 Atividade realizada em sala de aula, com o auxílio do professor [Celso Furtado](https://github.com/celsofurtado). Feita para praticar o conhecimento no pacote Swing e a interação entre objetos. 
 
 # Resultado do frame:
-![GUI-IMC](imc.PNG)
+![GUI](/imc.png)
