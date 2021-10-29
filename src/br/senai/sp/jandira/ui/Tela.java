@@ -100,11 +100,29 @@ public class Tela {
 				calculoImc.calcular(altura, peso);
 				calculoImc.verificar();
 				
+				
+				// atribuindo valores a variaveis e entao as exibindo
 				String imc = calculoImc.getImc();
 				String estado = calculoImc.getEstado();
 				
 				lblIMC.setText(imc);
 				lblClassificacao.setText(estado);
+				
+				// modificar a cor dos elementos
+				// 0 equivale a verde
+				// 1 equivale a amarelo
+				// 2 equivale a vermelho
+				
+				if (calculoImc.verificar().equals("0")) {
+					lblIMC.setForeground(Color.green);
+					lblClassificacao.setForeground(Color.green);
+				} else if (calculoImc.verificar().equals("1")) {
+					lblIMC.setForeground(Color.yellow);
+					lblClassificacao.setForeground(Color.yellow);
+				} else {
+					lblIMC.setForeground(Color.red);
+					lblClassificacao.setForeground(Color.red);
+				}
 				
 			}
 		});
